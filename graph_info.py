@@ -1,5 +1,5 @@
 from sklearn.decomposition import NMF
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 from utils_analysis import *
 
@@ -27,28 +27,31 @@ def get_organisation_keywords(df: DataFrame, stop_words: list):
 	vectorizer = TfidfVectorizer(max_df=0.95, min_df=2, max_features=n_top_words, stop_words=stop_words, strip_accents='ascii')
 	vect = vectorizer.fit_transform(df['Text'])
 	featured_names = vectorizer.get_feature_names()
-	print_info(featured_names)
-	print_info("vect.shape", vect.shape)
-	print_info("vect", vect)
 	vect_array = vect.toarray()
-	print_info("vect_array", vect_array)
-	print_info("vect_array", vect_array.shape)
 
-	# nmf = NMF(n_components=n_components, random_state=1, alpha=.1, l1_ratio=.5).fit(vect)
-	# print_top_words(nmf, featured_names, n_top_words)
+	nmf = NMF(n_components=n_components, random_state=1, alpha=.1, l1_ratio=.5).fit(vect)
+	print_top_words(nmf, featured_names, n_top_words)
 
 	# for f in vect.toarray():
 	# 	print_info(f)
 	# 	print_info(vect[f])
 
-	for idx in vect_array:
-		print(idx)
-		feature_mask = (idx > weight_threshold)
+	kw_cols = ['CdcsId', 'Target', 'Source', 'Weight']
+	df_keywords = DataFrame(columns=kw_cols)
 
-		print(feature_mask)
-	# print([f for f in vect_array[idx]])
+	for idx, arr in enumerate(vect_array):
+		print_debug(idx)
+		kws = np.array(featured_names)[np.array(arr > weight_threshold)]
+		weights = np.array(arr)[np.array(arr > weight_threshold)]
+		kw_weights = zip(kws, weights)
 
-	pass
+		for kw in kw_weights:
+			df_tmp = DataFrame([(df.ix[idx, 'Id'], df.ix[idx, 'Organisation_FR'], kw[0], kw[1])], columns=kw_cols)
+			df_keywords = pd.concat([df_keywords, df_tmp], 0)
+
+	df_keywords = df_keywords.reset_index(drop=True)
+	save_as_pickle(df_keywords, 'df_organisation_keywords')
+	save_as_xlsx(df_keywords, 'organisation_keywords')
 
 
 def get_keywords():
@@ -65,7 +68,7 @@ def get_keywords():
 
 	print_debug(df.shape)
 
-	get_organisation_keywords(df[['Id', 'Text']], stop_words)
+	get_organisation_keywords(df[['Id', 'Text', 'Organisation_FR']], stop_words)
 
 
 def get_xls_all_edges():
@@ -120,7 +123,7 @@ def get_edges():
 
 	# Topic to topic
 	for i in range(1, 4):
-		new_cols = [f'T{i}', f'T{i+1}', f'Topic{i}Id', f'Topic{i+1}Id']
+		new_cols = [f'T{i}', f'T{i + 1}', f'Topic{i}Id', f'Topic{i + 1}Id']
 		print_info(new_cols)
 
 		df_tmp = df_h[cols + new_cols]
