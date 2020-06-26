@@ -19,7 +19,7 @@ def print_top_words(model, feature_names, n_top_words):
 
 def get_organisation_keywords(df: DataFrame, stop_words: list):
 	n_top_words = 100
-	n_components = 10
+	n_components = 15
 	weight_threshold = 0.3
 
 	# vectorizer = TfidfVectorizer(stop_words=stop_words)
