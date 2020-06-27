@@ -5,9 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/Cdcs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Cdcs.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EXCEL/organisation_keywords.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/EXCEL/organisation_keywords.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PICKLES/df_organisation_keywords.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/PICKLES/df_organisation_keywords.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph_info.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +54,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -107,6 +106,12 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/CdcsImport" />
     </ignored-roots>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1459" y="164" key="SettingsEditor" timestamp="1593164163419">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1459" y="164" key="SettingsEditor/0.0.2560.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1593164163419" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
